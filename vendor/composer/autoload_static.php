@@ -44,6 +44,7 @@ class ComposerStaticInit5e5743ac8f0340682cd9fe834f8ade3e
         ),
         'W' => 
         array (
+            'Wikimedia\\Composer\\' => 19,
             'Webmozart\\PathUtil\\' => 19,
             'Webmozart\\Assert\\' => 17,
         ),
@@ -176,6 +177,10 @@ class ComposerStaticInit5e5743ac8f0340682cd9fe834f8ade3e
         'XdgBaseDir\\' => 
         array (
             0 => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src',
+        ),
+        'Wikimedia\\Composer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src',
         ),
         'Webmozart\\PathUtil\\' => 
         array (
