@@ -7,11 +7,13 @@
 
 namespace Drupal\my_module\Plugins\Field\FieldFormatter;
 
-use \Drupal\Core\Field\FieldItemListInterface;
-use \Drupal\Core\Field\FormatterBase;
-use \Drupal\rest_views\SerializedData;
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Field\FormatterBase;
+use Drupal\rest_views\SerializedData;
 
 /**
+ * A sample REST-aware field formatter for a custom field.
+ *
  * @FieldFormatter(
  *   id = "my_field_export",
  *   label = @Translation("Export my field"),

@@ -10,6 +10,8 @@ namespace Drupal\rest_views;
 class RenderableData {
 
   /**
+   * The render array.
+   *
    * @var string
    */
   protected $data;
@@ -18,6 +20,7 @@ class RenderableData {
    * RenderableData constructor.
    *
    * @param array $data
+   *   The render array.
    */
   public function __construct(array $data) {
     $this->data = $data;
@@ -27,18 +30,25 @@ class RenderableData {
    * Create a renderable data object.
    *
    * @param array $data
+   *   The render array.
    *
-   * @return \Drupal\rest_views\RenderableData
+   * @return static
    */
   public static function create(array $data) {
-    if ($data instanceof RenderableData) {
+    if ($data instanceof static) {
       return $data;
     }
     return new static($data);
   }
 
   /**
-   * {@inheritdoc}
+   * Convert renderable object to a string.
+   *
+   * This function needs to return a non-empty string in order to be processed
+   * correctly by Drupal's rendering system.
+   *
+   * @return string
+   *   A placeholder string representation.
    */
   public function __toString() {
     // This must not be empty.
@@ -46,7 +56,10 @@ class RenderableData {
   }
 
   /**
+   * Extract the render array.
+   *
    * @return mixed
+   *   The render array.
    */
   public function getData() {
     return $this->data;

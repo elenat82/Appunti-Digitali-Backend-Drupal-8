@@ -3,3 +3,4 @@ ckeditor_config.customconfig:
     js/ckeditor_config.js: {}
   dependencies:
     - core/jquery
+    - core/drupal.form

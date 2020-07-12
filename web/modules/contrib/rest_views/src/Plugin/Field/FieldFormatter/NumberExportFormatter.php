@@ -30,7 +30,7 @@ class NumberExportFormatter extends NumericUnformattedFormatter {
     foreach ($elements as $delta => $element) {
       $elements[$delta] = [
         '#type' => 'data',
-        '#data' => SerializedData::create(0+$element['#markup']),
+        '#data' => SerializedData::create(0 + $element['#markup']),
       ];
     }
 

@@ -11,7 +11,7 @@ use Drupal\rest_views\Plugin\Field\FieldFormatter\EntityReferenceExportFormatter
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Delegator plugin integrating the formatter of entity_reference_revisions with rest_views.
+ * Bridge plugin integrating entity_reference_revisions with rest_views.
  *
  * @FieldFormatter(
  *   id = "entity_reference_revisions_export",
@@ -34,17 +34,28 @@ class EntityReferenceRevisionsExportFormatter extends EntityReferenceExportForma
   /**
    * EntityReferenceRevisionsExportFormatter constructor.
    *
-   * @param string                                                                                                 $plugin_id
-   * @param mixed                                                                                                  $plugin_definition
-   * @param \Drupal\Core\Field\FieldDefinitionInterface                                                            $field_definition
-   * @param array                                                                                                  $settings
-   * @param string                                                                                                 $label
-   * @param string                                                                                                 $view_mode
-   * @param array                                                                                                  $third_party_settings
-   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface                                                      $logger_factory
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface                                                         $entity_type_manager
-   * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface                                                   $entity_display_repository
+   * @param string $plugin_id
+   *   The plugin_id for the formatter.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Drupal\Core\Field\FieldDefinitionInterface $field_definition
+   *   The definition of the field to which the formatter is associated.
+   * @param array $settings
+   *   The formatter settings.
+   * @param string $label
+   *   The formatter label display setting.
+   * @param string $view_mode
+   *   The view mode.
+   * @param array $third_party_settings
+   *   Any third party settings settings.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
+   *   The logger factory.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display_repository
+   *   The entity display repository.
    * @param \Drupal\entity_reference_revisions\Plugin\Field\FieldFormatter\EntityReferenceRevisionsEntityFormatter $entityFormatter
+   *   The entity_reference_revisions formatter.
    */
   public function __construct($plugin_id,
                               $plugin_definition,

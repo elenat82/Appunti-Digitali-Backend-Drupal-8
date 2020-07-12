@@ -8,13 +8,13 @@
   "minimum-stability": "dev",
   "support": {
     "issues": "https://www.drupal.org/project/issues/rest_views",
-    "source": "http://cgit.drupalcode.org/rest_views"
+    "source": "https://git.drupalcode.org/project/rest_views"
   },
   "authors": [
     {
       "name": "Christoph Burschka",
-      "email": "christoph.burschka@pwc-digital.ch",
-      "homepage": "https://github.com/cburschka-pwc",
+      "email": "christoph@burschka.de",
+      "homepage": "https://drupal.org/u/cburschka",
       "role": "Maintainer"
     }
   ]

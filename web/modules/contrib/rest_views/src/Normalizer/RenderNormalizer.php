@@ -21,6 +21,8 @@ class RenderNormalizer extends NormalizerBase {
   protected $supportedInterfaceOrClass = [RenderableData::class];
 
   /**
+   * The renderer service.
+   *
    * @var \Drupal\Core\Render\RendererInterface
    */
   protected $renderer;
@@ -29,6 +31,7 @@ class RenderNormalizer extends NormalizerBase {
    * DataNormalizer constructor.
    *
    * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
    */
   public function __construct(RendererInterface $renderer) {
     $this->renderer = $renderer;

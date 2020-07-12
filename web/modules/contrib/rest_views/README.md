@@ -10,8 +10,8 @@ hard limitations on the data structure, imposed by the Views module's reliance
 on the Render API:
 
  - You may want to export a field with multiple values as an array.
-   By default, this is only possible by exporting the raw field, as the rendering
-   process also concatenates the output into a single string.
+   By default, this is only possible by exporting the raw field, as the
+   rendering process also concatenates the output into a single string.
  - An entity reference can only be exported as a fully rendered string,
    and not as a nested structure with multiple individual fields.
  - Boolean and numeric fields can only be exported as strings, rather than

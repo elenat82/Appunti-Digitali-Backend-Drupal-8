@@ -4,14 +4,14 @@ namespace Drupal\rest_views\Plugin\views\field;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\rest_views\SerializedData;
-use Drupal\views\Plugin\views\field\Field;
+use Drupal\views\Plugin\views\field\EntityField;
 
 /**
  * Display entity field data in a serialized display.
  *
  * @ViewsField("field_export")
  */
-class EntityFieldExport extends Field {
+class EntityFieldExport extends EntityField {
 
   /**
    * {@inheritdoc}

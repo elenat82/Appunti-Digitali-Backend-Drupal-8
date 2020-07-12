@@ -22,6 +22,11 @@ class CkeditorConfigTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   public static $modules = [
     'ckeditor',
     'ckeditor_config',
@@ -94,15 +99,15 @@ class CkeditorConfigTest extends WebDriverTestBase {
     $test_value = 'forcePasteAsPlainText = true' . PHP_EOL . 'pasteFromWordPromptCleanup false';
     $page->fillField('editor[settings][plugins][customconfig][ckeditor_custom_config]', $test_value);
     $page->pressButton('Save configuration');
-    $assert_session->waitForElement('css', '.messages--error');
-    $assert_session->elementTextContains('css', '.messages--error', 'The configuration syntax on line 2 is incorrect.');
+    $assert_session->waitForElement('xpath', '//div[@role="alert"]');
+    $assert_session->elementTextContains('xpath', '//div[@role="alert"]', 'The configuration syntax on line 2 is incorrect.');
 
     // Enter a value that will pass validation.
     $this->clickLink('CKEditor custom configuration');
     $test_value = 'forcePasteAsPlainText = true' . PHP_EOL . 'pasteFromWordPromptCleanup = false' . PHP_EOL . 'removePlugins = font' . PHP_EOL . 'tabIndex = 3';
     $page->fillField('editor[settings][plugins][customconfig][ckeditor_custom_config]', $test_value);
     $page->pressButton('Save configuration');
-    $assert_session->elementTextContains('css', '.messages--status', 'The text format Testing Text Format has been updated.');
+    $assert_session->elementTextContains('xpath', '//div[@aria-label="Status message"]', 'The text format Testing Text Format has been updated.');
 
     // Verify submitted value is same as value stored in config.
     $editor = editor_load('testing_text_format');

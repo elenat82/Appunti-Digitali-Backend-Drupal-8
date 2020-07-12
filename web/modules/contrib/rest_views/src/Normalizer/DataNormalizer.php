@@ -22,7 +22,7 @@ class DataNormalizer extends NormalizerBase {
   /**
    * {@inheritdoc}
    */
-  public function normalize($object, $format = NULL, array $context = array()) {
+  public function normalize($object, $format = NULL, array $context = []) {
     /** @var \Drupal\rest_views\SerializedData $object */
     /** @var \Symfony\Component\Serializer\Normalizer\NormalizerInterface $normalizer */
     $normalizer = $this->serializer;

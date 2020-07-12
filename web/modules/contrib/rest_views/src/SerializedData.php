@@ -10,6 +10,8 @@ namespace Drupal\rest_views;
 class SerializedData {
 
   /**
+   * The wrapped data.
+   *
    * @var string
    */
   protected $data;
@@ -18,6 +20,7 @@ class SerializedData {
    * SerializedData constructor.
    *
    * @param mixed $data
+   *   The wrapped data.
    */
   public function __construct($data) {
     $this->data = $data;
@@ -27,18 +30,25 @@ class SerializedData {
    * Create a serialized data object.
    *
    * @param mixed $data
+   *   The wrapped data.
    *
-   * @return \Drupal\rest_views\SerializedData
+   * @return static
    */
   public static function create($data) {
-    if ($data instanceof SerializedData) {
+    if ($data instanceof static) {
       return $data;
     }
     return new static($data);
   }
 
   /**
-   * {@inheritdoc}
+   * Convert renderable object to a string.
+   *
+   * This function needs to return a non-empty string in order to be processed
+   * correctly by Drupal's rendering system.
+   *
+   * @return string
+   *   A placeholder string representation.
    */
   public function __toString() {
     // This must not be empty.
@@ -46,7 +56,10 @@ class SerializedData {
   }
 
   /**
+   * Extract the wrapped data.
+   *
    * @return mixed
+   *   The wrapped data.
    */
   public function getData() {
     return $this->data;

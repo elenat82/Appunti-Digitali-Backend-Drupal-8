@@ -7,7 +7,7 @@ use Drupal\Core\Field\FormatterBase;
 use Drupal\rest_views\SerializedData;
 
 /**
- * Export a Geo field
+ * Export a Geo field.
  *
  * @FieldFormatter(
  *   id = "reverse_geo_formatter_export",

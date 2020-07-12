@@ -7,8 +7,6 @@
 
 /**
  * Implements hook_views_data_alter().
- *
- * @param array $data
  */
 function rest_views_views_data_alter(array &$data) {
   foreach ($data as $table_alias => $fields) {

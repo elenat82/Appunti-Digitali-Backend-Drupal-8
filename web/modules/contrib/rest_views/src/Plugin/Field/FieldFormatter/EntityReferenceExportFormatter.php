@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\rest_views\RenderableData;
 use Drupal\rest_views\SerializedData;
+use Exception;
 
 /**
  * A plugin that creates a serializable form of a rendered entity.
@@ -57,15 +58,22 @@ class EntityReferenceExportFormatter extends EntityReferenceEntityFormatter {
       if (!empty($extra['url'])) {
         try {
           $output[$delta]['url'] = $entity->toUrl()->setAbsolute()->toString();
-        } catch (\Exception $exception) {
+        }
+        catch (Exception $exception) {
           $output[$delta]['url'] = NULL;
         }
+      }
+      if (!empty($extra['type'])) {
+        $output[$delta]['type'] = $entity->getEntityTypeId();
+      }
+      if (!empty($extra['bundle'])) {
+        $output[$delta]['bundle'] = $entity->bundle();
       }
 
       // Traverse the fields and build a serializable array.
       foreach (Element::children($row) as $name) {
-        $alias = substr($name, 6);
-        if ("field_$alias" !== $name) {
+        $alias = preg_replace('/^field_/', '', $name);
+        if (!empty($output[$delta][$alias])) {
           continue;
         }
 
@@ -83,11 +91,12 @@ class EntityReferenceExportFormatter extends EntityReferenceEntityFormatter {
 
         // If the field has no multiple cardinality, unpack the array.
         if (!empty($field['#items'])) {
-          /** @var FieldItemListInterface $field_items */
+          /** @var \Drupal\Core\Field\FieldItemListInterface $field_items */
           $field_items = $field['#items'];
-          if (!$field_items->getFieldDefinition()
-                           ->getFieldStorageDefinition()
-                           ->isMultiple()
+          if (!$field_items
+            ->getFieldDefinition()
+            ->getFieldStorageDefinition()
+            ->isMultiple()
           ) {
             $output[$delta][$alias] = reset($output[$delta][$alias]);
           }
@@ -112,8 +121,6 @@ class EntityReferenceExportFormatter extends EntityReferenceEntityFormatter {
 
   /**
    * {@inheritdoc}
-   *
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $elements = parent::settingsForm($form, $form_state);
@@ -122,9 +129,11 @@ class EntityReferenceExportFormatter extends EntityReferenceEntityFormatter {
       '#title'         => $this->t('Export metadata'),
       '#default_value' => $this->getSetting('extra'),
       '#options'       => [
-        'id'    => $this->t('ID'),
-        'title' => $this->t('Title'),
-        'url'   => $this->t('URL'),
+        'id'     => $this->t('ID'),
+        'title'  => $this->t('Title'),
+        'url'    => $this->t('URL'),
+        'type'   => $this->t('Entity type'),
+        'bundle' => $this->t('Entity bundle'),
       ],
     ];
     return $elements;
