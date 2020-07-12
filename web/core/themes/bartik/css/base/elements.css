@@ -150,18 +150,3 @@ ul ul {
 [dir="rtl"] ul ul {
   padding: 0 1em 0.25em 0;
 }
-
-/* stili custom del ckeditor: */
-
-h3,
-.heading-c {
-  color: darkblue;
-}
-
-.parolachiave.mat-display-4 {
-  background-color: lightsalmon;
-}
-
-.cell-true {
-  background-color: #c9e1bd;
-} 
